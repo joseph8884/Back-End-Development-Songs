@@ -9,6 +9,7 @@ from pymongo.errors import OperationFailure
 from pymongo.results import InsertOneResult
 from bson.objectid import ObjectId
 import sys
+from bson.json_util import dumps
 
 SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
 json_url = os.path.join(SITE_ROOT, "data", "songs.json")
@@ -51,3 +52,17 @@ def parse_json(data):
 ######################################################################
 # INSERT CODE HERE
 ######################################################################
+@app.route("/health")
+def getHealth():
+    return {"status":"OK"}, 200
+
+@app.route("/count")
+def count():
+    """return length of data"""
+    count = len(songs_list)
+    return {"count": count}, 200
+
+@app.route("/song")
+def songs():
+    """Return all songs."""
+    return {"songs": dumps(db.songs.find({}))},200

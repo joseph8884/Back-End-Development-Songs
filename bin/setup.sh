@@ -6,6 +6,7 @@ echo "****************************************"
 echo "Installing Python 3.9 and Virtual Environment"
 sudo apt-get update
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y python3.9 python3.9-venv
+sudo apt install python3.10-venv
 
 echo "Checking the Python version..."
 python3.9 --version
@@ -23,6 +24,7 @@ echo "Installing Python dependencies..."
 source ~/venv/bin/activate && python3.9 -m pip install --upgrade pip wheel
 source ~/venv/bin/activate && pip install -r requirements.txt
 source ~/venv/bin/activate && pip install pytest  # Add this line for pytest
+pip install pymongo
 
 echo "Starting the Postgres Docker container..."
 make db
