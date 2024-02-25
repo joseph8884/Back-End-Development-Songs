@@ -30,3 +30,6 @@ coverage==6.3.2
 
 # Utilities
 httpie==3.2.1
+
+# MongoDB driver
+pymongo==3.12.0
